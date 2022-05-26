@@ -10,7 +10,7 @@ void isa_reg_display() {
         printf("%s \t0x%08x \t%08d\n", regs[i], cpu.gpr[i]._32, cpu.gpr[i]._32);
     }
     printf("$eip \t0x%x \t%u\n", cpu.pc, cpu.pc);
-    printf("--------------END--------------\n");
+    printf("---------------END---------------\n");
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) { return 0; }
