@@ -95,8 +95,8 @@ static int cmd_x(char *args) {
     printf("Total Bytes: %d\n", bytes);
     printf("Starting Addr:" FMT_WORD "\n", addr);
     printf("Mem: ");
-    // for (int i = 0; i < bytes; i++)
-    // printf("0x%02x ", *guest_to_host(addr + i));
+    for (int i = 0; i < bytes; i++)
+        printf("0x%02x ", *guest_to_host(addr));
     printf("\n");
     printf("-----------END-----------\n");
     return 0;
