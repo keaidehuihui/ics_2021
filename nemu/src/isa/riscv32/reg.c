@@ -7,6 +7,7 @@ const char *regs[] = {"$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2", "s0", "s1"
 void isa_reg_display() {
     for (int i = 0; i < 32; i++) {
         printf("%s \t%x \t%d\n", regs[i], cpu.gpr[i]._32, cpu.gpr[i]._32);
+        printf("$eip \t%x \t%d", cpu.pc, cpu.pc);
     }
 }
 
