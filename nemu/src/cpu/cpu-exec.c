@@ -2,6 +2,7 @@
 #include <cpu/difftest.h>
 #include <cpu/exec.h>
 #include <isa-all-instr.h>
+#include <limits.h>
 #include <locale.h>
 
 /* The assembly code of instructions executed is only output to the screen
@@ -9,7 +10,7 @@
  * This is useful when you use the `si' command.
  * You can modify this value as you want.
  */
-#define MAX_INSTR_TO_PRINT UINT16_MAX
+#define MAX_INSTR_TO_PRINT INT_MAX
 
 CPU_state cpu = {};
 uint64_t g_nr_guest_instr = 0;
