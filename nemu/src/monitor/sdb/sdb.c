@@ -49,11 +49,17 @@ static int cmd_x(char *args) {
         printf("Need the mem start\n");
         return 1;
     }
+    bool success = true;
+    if (!success) {
+        printf("Error!!\n");
+        return 1;
+    }
+
     int len;
-    paddr_t address;
+    vaddr_t address;
 
     sscanf(N, "%d", &len);
-    sscanf(EXPR, "%d", &address);
+    sscanf(EXPR, "%x", &address);
 
     printf("0x%x:", address);
     int i;
