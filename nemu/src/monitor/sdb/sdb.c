@@ -2,6 +2,7 @@
 #include <cpu/cpu.h>
 #include <isa.h>
 #include <memory/paddr.h>
+#include <memory/vaddr.h>
 #include <readline/history.h>
 #include <readline/readline.h>
 
@@ -57,7 +58,7 @@ static int cmd_x(char *args) {
     printf("0x%x:", address);
     int i;
     for (i = 0; i < len; i++) {
-        printf("%x ", paddr_read(address, 4));
+        printf("%08x ", vaddr_read(address, 4));
         address += 4;
     }
     printf("\n");
