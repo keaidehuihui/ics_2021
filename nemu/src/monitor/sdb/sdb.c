@@ -31,6 +31,17 @@ static int cmd_c(char *args) {
     cpu_exec(-1);
     return 0;
 }
+
+static int cmd_info(char *args) {
+    char *arg = strtok(NULL, " ");
+    if (strcmp(arg, "r") == 0) {
+        for (int i = 0; i < 8; i++) {
+            printf("%s \t %x \t%d\n", "mxx", cpu.gpr[i]._32, cpu.gpr[i]._32);
+        }
+    }
+    return 0;
+}
+
 static int cmd_si(char *args) {
     char *arg = strtok(NULL, " ");
     int steps = 0;
@@ -60,6 +71,7 @@ static struct {
     {"c", "Continue the execution of the program", cmd_c},
     {"q", "Exit NEMU", cmd_q},
     {"si", "debug the program by step", cmd_si},
+    {"info", "print the info of register", cmd_info},
 
     /* TODO: Add more commands */
 
