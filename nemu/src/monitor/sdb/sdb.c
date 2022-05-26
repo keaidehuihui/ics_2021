@@ -34,74 +34,73 @@ static int cmd_c(char *args) {
     return 0;
 }
 
-// static int cmd_x(char *args) {
-// if (args == NULL) {
-// printf("Too few parameters\n");
-// return 1;
-//}
-// char *N = strtok(NULL, " ");
-// if (N == NULL) {
-// printf("need the size of mem\n");
-// return 1;
-//}
-// char *EXPR = strtok(NULL, " ");
-// if (EXPR == NULL) {
-// printf("Need the mem start\n");
-// return 1;
-//}
-// bool success = true;
-// if (!success) {
-// printf("Error!!\n");
-// return 1;
-//}
-//
-// int len;
-// vaddr_t address;
-//
-// sscanf(N, "%d", &len);
-// sscanf(EXPR, "%x", &address);
-//
-// printf("0x%x:", address);
-// int i;
-// for (i = 0; i < len; i++) {
-// printf("0x%02x ", *guest_to_host(address + i));
-//}
-// printf("\n");
-// return 0;
-//}
-//
-
 static int cmd_x(char *args) {
-    char *args_end = args + strlen(args);
-
     if (args == NULL) {
-        printf("Not Enough Arguments.\n");
-        return 0;
+        printf("Too few parameters\n");
+        return 1;
+    }
+    char *N = strtok(NULL, " ");
+    if (N == NULL) {
+        printf("need the size of mem\n");
+        return 1;
+    }
+    char *EXPR = strtok(NULL, " ");
+    if (EXPR == NULL) {
+        printf("Need the mem start\n");
+        return 1;
+    }
+    bool success = true;
+    if (!success) {
+        printf("Error!!\n");
+        return 1;
     }
 
-    char *Bytes = strtok(args, " ");
-    int bytes = strtol(Bytes, NULL, 10);
-    args = args + strlen(Bytes) + 1;
+    int len;
+    vaddr_t address;
 
-    if (args >= args_end) {
-        printf("Not Enough Arguments.\n");
-        return 0;
+    sscanf(N, "%d", &len);
+    sscanf(EXPR, "%x", &address);
+
+    printf("0x%x:", address);
+    int i;
+    for (i = 0; i < len; i++) {
+        printf("0x%02x ", *guest_to_host(address + i));
     }
-
-    char *Addr = strtok(args, " ");
-    word_t addr = strtoll(Addr, NULL, 16);
-
-    printf("---------MEMORY----------\n");
-    printf("Total Bytes: %d\n", bytes);
-    printf("Starting Addr:" FMT_WORD "\n", addr);
-    printf("Mem: ");
-    for (int i = 0; i < bytes; i++)
-        printf("0x%02x ", *guest_to_host(addr + i));
     printf("\n");
-    printf("-----------END-----------\n");
     return 0;
 }
 
+// static int cmd_x(char *args) {
+// char *args_end = args + strlen(args);
+//
+// if (args == NULL) {
+// printf("Not Enough Arguments.\n");
+// return 0;
+//}
+//
+// char *Bytes = strtok(args, " ");
+// int bytes = strtol(Bytes, NULL, 10);
+// args = args + strlen(Bytes) + 1;
+//
+// if (args >= args_end) {
+// printf("Not Enough Arguments.\n");
+// return 0;
+//}
+//
+// char *Addr = strtok(args, " ");
+// word_t addr = strtoll(Addr, NULL, 16);
+//
+// printf("---------MEMORY----------\n");
+// printf("Total Bytes: %d\n", bytes);
+// printf("Starting Addr:" FMT_WORD "\n", addr);
+// printf("Mem: ");
+// for (int i = 0; i < bytes; i++)
+// printf("0x%02x ", *guest_to_host(addr + i));
+// printf("\n");
+// printf("-----------END-----------\n");
+// return 0;
+//}
+//
 static int cmd_info(char *args) {
     char *arg = strtok(NULL, " ");
     if (arg == NULL) {
