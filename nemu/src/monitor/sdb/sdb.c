@@ -57,7 +57,7 @@ static int cmd_x(char *args) {
     printf("0x%x:", address);
     int i;
     for (i = 0; i < len; i++) {
-        printf("%08x ", paddr_read(address, 4));
+        printf("%x ", paddr_read(address, 4));
         address += 4;
     }
     printf("\n");
