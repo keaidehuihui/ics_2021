@@ -64,8 +64,7 @@ static int cmd_x(char *args) {
     printf("0x%x:", address);
     int i;
     for (i = 0; i < len; i++) {
-        printf("%08x ", vaddr_read(address, 4));
-        address += 4;
+        printf("0x%02x ", *guest_to_host(address + i));
     }
     printf("\n");
     return 0;
