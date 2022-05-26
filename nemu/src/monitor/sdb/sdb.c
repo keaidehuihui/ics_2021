@@ -33,25 +33,25 @@ static int cmd_c(char *args) {
     return 0;
 }
 
-// static int cmd_x(char *args) {
-// char *N = strtok(NULL, " ");
-// char *EXPR = strtok(NULL, " ");
-// int len;
-// paddr_t address;
-//
-// sscanf(N, "%d", &len);
-// sscanf(EXPR, "%d", &address);
-//
-// printf("0x%x:", address);
-// int i;
-// for (i = 0; i < len; i++) {
-// printf("%08x ", paddr_read(address, 4));
-// address += 4;
-//}
-// printf("\n");
-// return 0;
-//}
-//
+static int cmd_x(char *args) {
+    char *N = strtok(NULL, " ");
+    char *EXPR = strtok(NULL, " ");
+    int len;
+    paddr_t address;
+
+    sscanf(N, "%d", &len);
+    sscanf(EXPR, "%d", &address);
+
+    printf("0x%x:", address);
+    int i;
+    for (i = 0; i < len; i++) {
+        printf("%08x ", paddr_read(address, 4));
+        address += 4;
+    }
+    printf("\n");
+    return 0;
+}
+
 static int cmd_info(char *args) {
     char *arg = strtok(NULL, " ");
     if (arg == NULL) {
@@ -97,7 +97,7 @@ static struct {
     {"q", "Exit NEMU", cmd_q},
     {"si", "debug the program by step", cmd_si},
     {"info", "print the info of register", cmd_info},
-    // {"x", "print the info of memory", cmd_x},
+    {"x", "print the info of memory", cmd_x},
 
     /* TODO: Add more commands */
 
