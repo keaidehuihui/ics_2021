@@ -54,8 +54,15 @@ static int cmd_c(char *args) {
 //
 static int cmd_info(char *args) {
     char *arg = strtok(NULL, " ");
-    if (strcmp(arg, "r") == 0) {
-        isa_reg_display();
+    if (arg == NULL) {
+        printf("need the r");
+        return 0;
+    } else {
+        if (strcmp(arg, "r") == 0) {
+            isa_reg_display();
+        } else {
+            printf("invalid input argument");
+        }
     }
     return 0;
 }
