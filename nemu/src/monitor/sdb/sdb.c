@@ -34,8 +34,20 @@ static int cmd_c(char *args) {
 }
 
 static int cmd_x(char *args) {
+    if (args == NULL) {
+        printf("Too few parameters\n");
+        return 1;
+    }
     char *N = strtok(NULL, " ");
+    if (N == NULL) {
+        printf("need the size of mem\n");
+        return 1;
+    }
     char *EXPR = strtok(NULL, " ");
+    if (EXPR == NULL) {
+        printf("Need the mem start\n");
+        return 1;
+    }
     int len;
     paddr_t address;
 
