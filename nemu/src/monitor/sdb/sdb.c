@@ -31,6 +31,21 @@ static int cmd_c(char *args) {
     cpu_exec(-1);
     return 0;
 }
+static int cmd_si(char *args) {
+    char *arg = strtok(NULL, " ");
+    int steps = 0;
+    if (arg == NULL) {
+        cpu_exec(1);
+        return 0;
+    }
+    sscanf(arg, "%d", &steps);
+    if (steps < -1) {
+        printf("Error, N is an interger greater than or equal to -1\n");
+        return 0;
+    }
+    cpu_exec(steps);
+    return 0;
+}
 
 static int cmd_q(char *args) { return -1; }
 
@@ -44,6 +59,7 @@ static struct {
     {"help", "Display informations about all supported commands", cmd_help},
     {"c", "Continue the execution of the program", cmd_c},
     {"q", "Exit NEMU", cmd_q},
+    {"si", "debug the program by step", cmd_si},
 
     /* TODO: Add more commands */
 
